@@ -1,5 +1,5 @@
 # IDASM101 - Big data ingénierie et traitement
-## TP - MangoDB
+## TP - MongoDB
 
 ### Getting started
 #### Requirements
@@ -7,12 +7,12 @@
 - [Docker](https://docs.docker.com/get-docker/)
 
 #### Setup
-1) Run the command `git clone https://gitlab.unamur.be/info-big-data/idasm101/tp-mangodb.git` to download the repository.
+1) Run the command `git clone https://gitlab.unamur.be/info-big-data/idasm101/tp-mongodb.git` to download the repository.
 2) Launch Docker Desktop
 3) Open a terminal in the repository's root folder and and run `docker compose run -d` command.
 4) Open your browser at http://localhost:8081/
 5) Enter the default credentials `admin` and `pass`
-7) Run the `docker exec -it tp-mangodb-mongo-1 mongosh --username root --authenticationDatabase admin` command to open a mango shell inside the container.
+7) Run the `docker exec -it tp-mongodb-mongo-1 mongosh --username root --authenticationDatabase admin` command to open a mango shell inside the container.
 8) Type the root user password `example`
 
 ### Database reset
