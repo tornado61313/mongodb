@@ -1,0 +1,2 @@
+mongoimport --host mongo --db bookstore --collection books --type json --file /books.json --authenticationDatabase admin --username root --password example
+mongoimport --host mongo --db bookstore --collection covers --type json --file /covers.json --authenticationDatabase admin --username root --password example

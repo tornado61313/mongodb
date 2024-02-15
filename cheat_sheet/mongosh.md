@@ -41,6 +41,7 @@ Descending: `db.books.find().sort({rating: -1})`
 `db.books.find()`
 ### Find books by authors 
 `db.books.find({author: "J. R. R. Tolkien"})`
+`db.books.find({ author: "Andres Almiray" })`
 ### Find books by authors and rating
 `db.books.find({author: "J. R. R. Tolkien", rating: 7})`
 ### Find books with a rating greater then 7
