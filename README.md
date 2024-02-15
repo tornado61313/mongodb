@@ -14,9 +14,10 @@
 5) Enter the default credentials `admin` and `pass`
 7) Run the `docker exec -it tp-mongodb-mongo-1 mongosh --username root --authenticationDatabase admin` command to open a mango shell inside the container.
 8) Type the root user password `example`
+9) Have fun with mongoDB! - Query examples are provided in the `sheet_cheat` folder.
 
 ### Database reset
-If you want to reset the database. You can simply delete the runnning container and recreate this. To do so, open Docker compose and click on the trashbin icon to delete the corresponding container. Open a terminal in the repository's root folder and run `docker compose run -d` to recreate it.
+If you want to reset the database. You can simply delete the runnning containers and volumes. To do so, open Docker compose and click on the trashbin icon to delete the corresponding container. Then to delete the volumes go to the Volume tab and click on the trashbin icon. Open a terminal in the repository's root folder and run `docker compose run -d` to recreate everything.
 
 ### Links
 - https://www.mongodb.com/developer/products/mongodb/cheat-sheet/
