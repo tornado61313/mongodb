@@ -10,7 +10,7 @@
 1) Run the command `git clone https://gitlab.unamur.be/info-big-data/idasm101/tp-mongodb.git` to download the repository.
 2) Launch Docker Desktop
 3) Open a terminal in the repository's root folder and and run `docker compose run -d` command.
-7) Run the `docker exec -it tp-mongodb-mongo-1 mongosh --username root --authenticationDatabase admin` command to open a mango shell inside the container.
+7) Run the `docker exec -it tp-mongodb-mongo-1 mongosh --username root --authenticationDatabase admin` command to open a mongo shell inside the container.
 8) Type the root user password `example`
 9) Have fun with MongoDB! - Query examples are provided in the `cheat_sheet` folder.
 
