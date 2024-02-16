@@ -21,12 +21,6 @@ You will get back the id of the newly created document
 }
 ```
 
-## Add a document to a new authors collection
-`db.authors.insertOne({name: "John Ronald Reuel Tolkien", age: 81})`
-
-## Insert multiple books to the books collection
-`db.books.insertMany([{title: "Le Hobbit", author: "J. R. R. Tolkien", pages: 448, rating: 7, genres: ["fantasy", "roman"]},{title: "La Communauté de l'Anneau", author: "J. R. R. Tolkien", pages: 722, rating: 8, genres: ["fantasy", "roman"]}])`
-
 ## Sort data
 ### Count the books
 `db.books.find().count()`
@@ -39,29 +33,32 @@ Descending: `db.books.find().sort({rating: -1})`
 ## Find documents
 ### List books
 `db.books.find()`
-### Find books by authors 
-`db.books.find({author: "J. R. R. Tolkien"})`
-`db.books.find({ author: "Andres Almiray" })`
-### Find books by authors and rating
-`db.books.find({author: "J. R. R. Tolkien", rating: 7})`
-### Find books with a rating greater then 7
-`db.books.find({rating: {$gt: 7}})`
-### Find books with a rating lower then 8
-`db.books.find({rating: {$lt: 8}})`
-### Find books with a rating of 7 and J. R. R. Tolkien as an other
-`db.books.find({$and: [{rating: 7}, {author: "J. R. R. Tolkien"}]})`
+### Find books by status and page number
+`db.books.find({status: "PUBLISH", pageCount: 300}).limit(2)`
+### Find books with a number of page greater than 300
+`db.books.find({pageCount: {$gt: 300}}).limit(2)`
+### Find books with a pageCount lower than 400
+`db.books.find({pageCount: {$lt: 400}}).limit(2)`
 ### Find books with a number of pages between of 300 and 400
-`db.books.find({$and: [{pages: {$gt: 300}, pages: {$lt: 400}}]})`
+`db.books.find({$and: [{pageCount: {$gt: 300}, pageCount: {$lt: 400}}]})`
+### Find books by authors 
+The wrong way: `db.books.find({ author: "Andres Almiray" })` \
+The good way: `db.books.find({ authors: {$in: ["Andres Almiray"]} })`
+
+Authors is an array, we need to use the $in query operator to query all documents where the authors field contain "Andres Almiray".
+
 ### Find books with a number of pages in [722, 448]
-`db.books.find({pages: {$in: [722, 448]}})`
+`db.books.find({pages: {$in: [722, 448]}}).limit(2)`
 
 ## Delete documents
-`db.books.deleteMany({author: "J. K. Rowling"})`
-`db.books.find({author: "J. K. Rowling"}).count()`
+`db.books.deleteMany({ authors: {$in: ["Andres Almiray"]} })`
+`db.books.find({ authors: {$in: ["Andres Almiray"]} }).count()`
 
 ## Update documents
-`db.books.find({title: "Le Hobbit"}, {_id: 1, title: 1})` \
-`db.books.updateOne({_id: ObjectId('65aac9ac314069fbfe0134ce')}, {$set: {rating: 10}})` \
-`db.books.updateOne({_id: ObjectId('65aac9ac314069fbfe0134ce')}, {$inc: {rating: -1}})` \
-`db.books.updateOne({_id: ObjectId('65aac9ac314069fbfe0134ce')}, {$push: {genres: "aventure"}})` \
-`db.books.updateOne({_id: ObjectId('65aac9ac314069fbfe0134ce')}, {$pull: {genres: "roman"}})`
+Find the document id: `db.books.find({title: "Open Source SOA"}, {_id: 1, title: 1})` \
+`db.books.updateOne({_id: 68}, {$set: {pageCount: 10}})` \
+`db.books.updateOne({_id: 68}, {$inc: {pageCount: -1}})` \
+Adding to a list: `db.books.updateOne({_id: 68}, {$push: {categories: "aventure"}})` \
+`db.books.find({_id: 68})` \
+Removing from a list: `db.books.updateOne({_id: 68}, {$pull: {categories: "aventure"}})` \
+`db.books.find({_id: 68})`
